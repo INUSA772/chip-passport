@@ -1,0 +1,98 @@
+/* Client/styles/Dashboard.css */
+
+.dash-page {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 980px;
+}
+
+.dash-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dash-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-teal-dark);
+  margin: 0 0 var(--space-xs);
+}
+
+.dash-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 34px);
+  color: var(--color-primary);
+  margin: 0 0 4px;
+}
+
+.dash-role {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.dash-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-top: 4px solid transparent;
+}
+
+.dash-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(18, 59, 94, 0.16);
+}
+
+.dash-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  color: #fff;
+}
+
+.dash-card--teal { border-top-color: var(--color-teal); }
+.dash-card--teal .dash-card-icon { background: linear-gradient(155deg, var(--color-teal), var(--color-teal-dark)); }
+
+.dash-card--blue { border-top-color: var(--color-primary-light); }
+.dash-card--blue .dash-card-icon { background: linear-gradient(155deg, var(--color-primary-light), var(--color-primary)); }
+
+.dash-card--gold { border-top-color: var(--color-gold); }
+.dash-card--gold .dash-card-icon { background: linear-gradient(155deg, #F0B65D, #C97F1E); }
+
+.dash-card--coral { border-top-color: var(--color-accent); }
+.dash-card--coral .dash-card-icon { background: linear-gradient(155deg, #F0806E, var(--color-accent)); }
+
+.dash-card h2 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin: 0 0 6px;
+  color: var(--color-primary);
+}
+
+.dash-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .dash-page {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

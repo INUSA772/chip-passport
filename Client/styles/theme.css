@@ -1,0 +1,103 @@
+/* Client/styles/theme.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color — calming blue/teal-green clinical palette */
+  --color-ink: #14293B;
+  --color-primary: #123B5E;      /* deep navy-blue */
+  --color-primary-light: #1E6091; /* bright mid-blue */
+  --color-teal: #12A594;          /* teal-green — main call-to-action color */
+  --color-teal-dark: #0C7A6E;
+  --color-bg: #EAF2F4;            /* soft blue-green wash */
+  --color-surface: #FFFFFF;
+  --color-accent: #E85D4C;        /* warm coral — reserved for errors/alerts only */
+  --color-gold: #E4A13D;
+  --color-border: #D6E3E8;
+  --color-muted: #5C7080;
+
+  /* Type */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing scale */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 56px;
+
+  /* Shape */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+
+  /* Shadows — layered depth so cards and buttons feel lifted */
+  --shadow-card: 0 10px 30px rgba(18, 59, 94, 0.12), 0 2px 8px rgba(18, 59, 94, 0.06);
+  --shadow-btn: 0 4px 14px rgba(18, 165, 148, 0.35);
+  --shadow-btn-hover: 0 6px 20px rgba(18, 165, 148, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  background: linear-gradient(160deg, #EAF2F4 0%, #DCEEE9 50%, #E7F0F6 100%);
+  min-height: 100vh;
+}
+
+/* Shared button look — solid teal fill, real shadow lift, tactile feedback */
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: var(--color-teal);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-teal-dark);
+  box-shadow: var(--shadow-btn-hover);
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+  box-shadow: var(--shadow-btn);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Shared card look — every page's main content box can use this class */
+.surface-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}

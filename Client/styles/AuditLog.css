@@ -1,0 +1,83 @@
+/* Client/styles/AuditLog.css */
+
+.al-main {
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.al-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.al-subtitle {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-lg);
+  max-width: 520px;
+}
+
+.al-status {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.al-error {
+  color: var(--color-accent);
+  font-size: 14px;
+}
+
+.al-table-wrap {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+
+.al-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.al-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.al-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+}
+
+.al-table tr:last-child td {
+  border-bottom: none;
+}
+
+.al-table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+.al-empty {
+  padding: var(--space-lg);
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 640px) {
+  .al-main {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

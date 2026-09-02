@@ -1,0 +1,212 @@
+/* Client/styles/Register.css */
+
+.register-page {
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: wrap;
+}
+
+.register-hero {
+  flex: 0 1 320px;
+  background: linear-gradient(160deg, var(--color-primary), var(--color-primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  min-height: 200px;
+}
+
+.id-card {
+  width: 100%;
+  max-width: 300px;
+  background: linear-gradient(155deg, var(--color-primary-light), var(--color-primary));
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  color: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  animation: card-in 0.5s ease both;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.id-card::after {
+  content: '';
+  position: absolute;
+  right: -60px;
+  bottom: -60px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-teal) 0%, transparent 70%);
+  opacity: 0.35;
+}
+
+.id-card-chip {
+  width: 36px;
+  height: 28px;
+  background: var(--color-gold);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  padding: 4px;
+  margin-bottom: var(--space-md);
+}
+
+.id-card-chip span {
+  background: rgba(18, 59, 94, 0.35);
+  border-radius: 2px;
+}
+
+.id-card-country {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin: 0 0 var(--space-xs);
+}
+
+.id-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 600;
+  margin: 0 0 var(--space-xs);
+}
+
+.id-card-sub {
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.85;
+  margin: 0;
+}
+
+.register-panel {
+  flex: 1 1 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.register-box {
+  width: 100%;
+  max-width: 360px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  animation: card-in 0.5s ease 0.1s both;
+}
+
+.register-heading {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin: 0 0 4px;
+  color: var(--color-primary);
+}
+
+.register-subheading {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.register-box label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-ink);
+}
+
+.register-box input,
+.register-box select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  background: var(--color-bg);
+  min-height: 40px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.register-box select {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.register-box input:focus,
+.register-box select:focus {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(18, 165, 148, 0.15);
+  outline: none;
+  background: var(--color-surface);
+}
+
+.register-box button {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  min-height: 42px;
+  margin-top: 4px;
+}
+
+.register-error {
+  color: var(--color-accent);
+  font-size: 12px;
+  margin: -4px 0 var(--space-sm);
+}
+
+.register-success {
+  color: var(--color-teal-dark);
+  font-size: 12px;
+  margin: -4px 0 var(--space-sm);
+}
+
+.register-footer {
+  margin-top: var(--space-md);
+  font-size: 13px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.register-footer a {
+  color: var(--color-primary-light);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .register-page {
+    flex-direction: column;
+  }
+
+  .register-hero {
+    flex: 0 0 auto;
+    min-height: 0;
+    padding: var(--space-md);
+  }
+
+  .id-card {
+    max-width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .register-panel {
+    flex: 1 1 auto;
+    padding: var(--space-md);
+  }
+}

@@ -1,0 +1,156 @@
+/* Client/styles/ScanCard.css */
+
+.scan-main {
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.scan-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+.scan-idle-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+
+.scan-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: linear-gradient(155deg, var(--color-teal), var(--color-teal-dark));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-btn);
+}
+
+.scan-idle-card h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.scan-idle-card p {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin: 0 0 var(--space-lg);
+}
+
+.scan-start-btn {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  min-height: 46px;
+}
+
+.scan-camera-wrap {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+#qr-reader {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.scan-cancel-btn {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-md);
+  padding: 12px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-size: 14px;
+  min-height: 44px;
+  box-shadow: none;
+  border: 1px solid var(--color-border);
+}
+
+.scan-cancel-btn:hover:not(:disabled) {
+  background: var(--color-border);
+  box-shadow: none;
+  transform: none;
+}
+
+.scan-error {
+  width: 100%;
+  max-width: 420px;
+  margin: var(--space-md) 0 0;
+  padding: var(--space-sm) var(--space-md);
+  background: #FCE9E5;
+  color: var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  text-align: center;
+}
+
+.scan-result {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.scan-result h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-primary);
+  margin: 0 0 var(--space-md);
+}
+
+.scan-result p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-ink);
+}
+
+.scan-result strong {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.scan-result .scan-start-btn {
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+.scan-result .scan-back-link {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-sm);
+  padding: 11px;
+  color: var(--color-primary-light);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.scan-result .scan-back-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .scan-main {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

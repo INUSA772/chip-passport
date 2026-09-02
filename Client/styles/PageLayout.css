@@ -1,0 +1,17 @@
+/* Client/styles/PageLayout.css */
+
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+  min-width: 0; /* prevents flex children from overflowing on narrow screens */
+}
+
+@media (max-width: 860px) {
+  .page-layout {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,75 @@
+/* Client/styles/RegisterPatient.css */
+
+.rp-main {
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.rp-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+.rp-box {
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.rp-box label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-ink);
+}
+
+.rp-box input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  background: var(--color-bg);
+  min-height: 40px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rp-box input:focus {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(18, 165, 148, 0.15);
+  outline: none;
+  background: var(--color-surface);
+}
+
+.rp-box button {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  min-height: 42px;
+  margin-top: 4px;
+}
+
+.rp-error {
+  color: var(--color-accent);
+  font-size: 12px;
+  margin: -4px 0 var(--space-sm);
+}
+
+.rp-success {
+  color: var(--color-teal-dark);
+  font-size: 12px;
+  margin: -4px 0 var(--space-sm);
+}
+
+@media (max-width: 640px) {
+  .rp-main {
+    padding: var(--space-lg) var(--space-md);
+  }
+}
