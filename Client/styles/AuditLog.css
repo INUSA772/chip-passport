@@ -1,21 +1,112 @@
-/* Client/styles/AuditLog.css */
-
-.al-main {
-  padding: var(--space-xl) var(--space-lg);
+.al {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
 }
 
-.al-title {
+.al-header {
+  margin-bottom: 16px;
+}
+
+.al-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 28px);
+  font-size: 22px;
   color: var(--color-primary);
-  margin: 0 0 var(--space-xs);
+  margin: 0 0 6px;
 }
 
-.al-subtitle {
-  font-size: 13px;
+.al-header p {
+  font-size: 13.5px;
   color: var(--color-muted);
-  margin: 0 0 var(--space-lg);
+  margin: 0;
   max-width: 520px;
+  line-height: 1.45;
+}
+
+.al-privacy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  background: #f0f7f6;
+  border: 1px solid #c5e4df;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: #3d5160;
+  line-height: 1.4;
+}
+
+.al-privacy strong {
+  color: #0c7a6e;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.al-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.al-stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.al-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+.al-stat-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.al-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.al-search {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 13.5px;
+  background: #fff;
+  font-family: var(--font-body);
+}
+
+.al-search:focus {
+  outline: none;
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(18, 165, 148, 0.12);
+}
+
+.al-count {
+  font-size: 12px;
+  color: var(--color-muted);
+  white-space: nowrap;
 }
 
 .al-status {
@@ -24,60 +115,167 @@
 }
 
 .al-error {
-  color: var(--color-accent);
+  background: #fdecea;
+  color: #b42318;
+  border: 1px solid #f5c6c2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.al-empty {
+  text-align: center;
+  padding: 36px 16px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 10px;
+}
+
+.al-empty p {
+  margin: 0 0 4px;
   font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.al-empty span {
+  font-size: 13px;
+  color: var(--color-muted);
 }
 
 .al-table-wrap {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .al-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 520px;
 }
 
 .al-table th {
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-muted);
-  padding: var(--space-md) var(--space-lg);
+  padding: 11px 14px;
   border-bottom: 1px solid var(--color-border);
+  background: #f7fafb;
 }
 
 .al-table td {
-  padding: var(--space-md) var(--space-lg);
+  padding: 11px 14px;
   border-bottom: 1px solid var(--color-border);
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-ink);
-  font-family: var(--font-mono);
+  vertical-align: middle;
 }
 
-.al-table tr:last-child td {
+.al-table tbody tr:last-child td {
   border-bottom: none;
 }
 
 .al-table tbody tr:hover {
-  background: var(--color-bg);
+  background: #f7fbfb;
 }
 
-.al-empty {
-  padding: var(--space-lg);
-  text-align: center;
-  font-size: 14px;
-  color: var(--color-muted);
-  font-family: var(--font-body);
+.al-col-num {
+  width: 44px;
+  color: var(--color-muted) !important;
+  font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 640px) {
-  .al-main {
-    padding: var(--space-lg) var(--space-md);
+.al-code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: #eef3f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #123b5e;
+}
+
+.al-date {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: #3d5160;
+}
+
+/* Mobile cards */
+.al-cards {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .al {
+    padding: 16px 14px 40px;
+  }
+
+  .al-stats {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .al-stat-value {
+    font-size: 18px;
+  }
+
+  .al-table-wrap {
+    display: none;
+  }
+
+  .al-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .al-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .al-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .al-card-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
+  .al-card-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+
+  .al-card-row span {
+    color: var(--color-muted);
+    flex-shrink: 0;
+  }
+
+  .al-card-row strong {
+    text-align: right;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 400px) {
+  .al-stats {
+    grid-template-columns: 1fr;
   }
 }
