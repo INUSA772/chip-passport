@@ -1,0 +1,91 @@
+/* Client/styles/StaffList.css */
+
+.sl-main {
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.sl-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+.sl-status {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.sl-error {
+  color: var(--color-accent);
+  font-size: 14px;
+}
+
+.sl-table-wrap {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+
+.sl-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+.sl-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sl-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  color: var(--color-ink);
+}
+
+.sl-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sl-table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+.sl-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sl-badge--it_admin {
+  background: #E5EEFB;
+  color: var(--color-primary);
+}
+
+.sl-badge--clinician {
+  background: #DAF3EF;
+  color: var(--color-teal-dark);
+}
+
+.sl-badge--nurse {
+  background: #FDF0DC;
+  color: #B9791F;
+}
+
+@media (max-width: 640px) {
+  .sl-main {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

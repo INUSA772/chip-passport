@@ -1,0 +1,174 @@
+/* Client/styles/Sidebar.css */
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--color-primary), #0D2F49 90%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-md);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+/* Subtle circuit-pattern texture, ties back to the "chip" concept
+   without being a literal, distracting image. */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  position: relative;
+}
+
+.sidebar-chip {
+  width: 32px;
+  height: 24px;
+  background: var(--color-gold);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.sidebar-chip span {
+  background: rgba(18, 59, 94, 0.4);
+  border-radius: 2px;
+}
+
+.sidebar-brand-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sidebar-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  margin: 2px 0 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.sidebar-link.active {
+  background: var(--color-teal);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+
+.sidebar-signout {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  box-shadow: none;
+}
+
+.sidebar-signout:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Mobile: sidebar becomes a sticky horizontal top bar */
+@media (max-width: 860px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-md);
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex: 0 0 auto;
+  }
+
+  .sidebar-link span {
+    display: none;
+  }
+
+  .sidebar-link {
+    padding: 10px;
+  }
+
+  .sidebar-signout {
+    flex-shrink: 0;
+    padding: 10px;
+    margin-left: auto;
+  }
+
+  .sidebar-signout span {
+    display: none;
+  }
+}
