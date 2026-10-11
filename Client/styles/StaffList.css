@@ -1,17 +1,28 @@
-/* Client/styles/StaffList.css */
-
 .sl-main {
-  padding: var(--space-xl) var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
 }
 
-.sl-title {
+.sl-header {
+  margin-bottom: 20px;
+}
+
+.sl-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 28px);
+  font-size: 22px;
   color: var(--color-primary);
-  margin: 0 0 var(--space-lg);
+  margin: 0 0 4px;
 }
 
-.sl-status {
+.sl-header p {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.sl-status,
+.sl-empty {
   font-size: 14px;
   color: var(--color-muted);
 }
@@ -21,34 +32,35 @@
   font-size: 14px;
 }
 
+/* Desktop table */
 .sl-table-wrap {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
 }
 
 .sl-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 480px;
 }
 
 .sl-table th {
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-muted);
-  padding: var(--space-md) var(--space-lg);
+  padding: 12px 16px;
   border-bottom: 1px solid var(--color-border);
+  background: #f8fbfc;
 }
 
 .sl-table td {
-  padding: var(--space-md) var(--space-lg);
+  padding: 12px 16px;
   border-bottom: 1px solid var(--color-border);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--color-ink);
 }
 
@@ -56,15 +68,11 @@
   border-bottom: none;
 }
 
-.sl-table tbody tr:hover {
-  background: var(--color-bg);
-}
-
 .sl-badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -84,8 +92,56 @@
   color: #B9791F;
 }
 
-@media (max-width: 640px) {
+/* Mobile cards — hidden on desktop */
+.sl-cards {
+  display: none;
+}
+
+@media (max-width: 700px) {
   .sl-main {
-    padding: var(--space-lg) var(--space-md);
+    padding: 16px 14px 32px;
+  }
+
+  .sl-table-wrap {
+    display: none;
+  }
+
+  .sl-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sl-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .sl-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .sl-card-top strong {
+    font-size: 14.5px;
+    color: var(--color-ink);
+  }
+
+  .sl-card p {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: var(--color-ink);
+  }
+
+  .sl-card p span {
+    display: inline-block;
+    min-width: 70px;
+    color: var(--color-muted);
+    font-size: 12px;
   }
 }

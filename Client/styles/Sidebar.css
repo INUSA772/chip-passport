@@ -1,96 +1,96 @@
-/* Client/styles/Sidebar.css */
-
 .sidebar {
-  width: 240px;
+  width: 220px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, var(--color-primary), #0D2F49 90%);
+  background: linear-gradient(180deg, #123B5E 0%, #0D2F49 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding: var(--space-lg) var(--space-md);
-  height: 100vh;
+  padding: 20px 14px;
+  min-height: 100vh;
   position: sticky;
   top: 0;
-  overflow-y: auto;
 }
 
-/* Subtle circuit-pattern texture, ties back to the "chip" concept
-   without being a literal, distracting image. */
-.sidebar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-xl);
-  position: relative;
+  gap: 10px;
 }
 
 .sidebar-chip {
-  width: 32px;
-  height: 24px;
-  background: var(--color-gold);
-  border-radius: 5px;
+  width: 28px;
+  height: 22px;
+  background: #E4A13D;
+  border-radius: 4px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2px;
-  padding: 4px;
+  padding: 3px;
   flex-shrink: 0;
 }
 
 .sidebar-chip span {
   background: rgba(18, 59, 94, 0.4);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .sidebar-brand-title {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   margin: 0;
   line-height: 1.2;
 }
 
 .sidebar-brand-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.06em;
   opacity: 0.65;
-  margin: 2px 0 0;
+  margin: 1px 0 0;
+  text-transform: uppercase;
+}
+
+/* Hamburger — hidden on desktop */
+.sidebar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+  box-shadow: none;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   flex: 1;
-  position: relative;
 }
 
 .sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 11px 14px;
-  border-radius: var(--radius-sm);
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   transition: background 0.15s ease, color 0.15s ease;
-}
-
-.sidebar-link svg {
-  flex-shrink: 0;
 }
 
 .sidebar-link:hover {
@@ -99,76 +99,70 @@
 }
 
 .sidebar-link.active {
-  background: var(--color-teal);
+  background: #12A594;
   color: #fff;
-  box-shadow: var(--shadow-btn);
 }
 
 .sidebar-signout {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 11px 14px;
-  border-radius: var(--radius-sm);
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  position: relative;
   box-shadow: none;
+  text-align: left;
 }
 
 .sidebar-signout:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: #E85D4C;
+  border-color: #E85D4C;
   color: #fff;
   transform: none;
   box-shadow: none;
 }
 
-/* Mobile: sidebar becomes a sticky horizontal top bar */
+/* ========== MOBILE ========== */
 @media (max-width: 860px) {
   .sidebar {
     width: 100%;
+    min-height: auto;
     height: auto;
     position: sticky;
     top: 0;
-    z-index: 10;
-    flex-direction: row;
-    align-items: center;
-    padding: var(--space-sm) var(--space-md);
-    gap: var(--space-md);
-    overflow-x: auto;
-    overflow-y: visible;
+    z-index: 50;
+    padding: 12px 14px;
+    flex-direction: column;
   }
 
-  .sidebar-brand {
+  .sidebar-top {
     margin-bottom: 0;
-    flex-shrink: 0;
   }
 
-  .sidebar-nav {
-    flex-direction: row;
-    flex: 0 0 auto;
+  .sidebar-toggle {
+    display: grid;
+    place-items: center;
   }
 
-  .sidebar-link span {
-    display: none;
-  }
-
-  .sidebar-link {
-    padding: 10px;
-  }
-
+  /* Hide nav + signout until menu is open */
+  .sidebar-nav,
   .sidebar-signout {
-    flex-shrink: 0;
-    padding: 10px;
-    margin-left: auto;
+    display: none;
   }
 
-  .sidebar-signout span {
-    display: none;
+  .sidebar--open .sidebar-nav {
+    display: flex;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .sidebar--open .sidebar-signout {
+    display: block;
+    margin-top: 8px;
   }
 }
