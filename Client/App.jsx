@@ -1,5 +1,3 @@
-// Client/App.jsx
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
@@ -9,6 +7,9 @@ import ScanCard from './pages/ScanCard.jsx';
 import RegisterPatient from './pages/RegisterPatient.jsx';
 import GenerateCard from './pages/GenerateCard.jsx';
 import RecordVisit from './pages/RecordVisit.jsx';
+import RecordVitals from './pages/RecordVitals.jsx';
+import MyTriageToday from './pages/MyTriageToday.jsx';
+import WaitingQueue from './pages/WaitingQueue.jsx';
 import StaffList from './pages/StaffList.jsx';
 import AuditLog from './pages/AuditLog.jsx';
 
@@ -24,6 +25,9 @@ function App() {
         <Route path="/register-patient" element={<RegisterPatient />} />
         <Route path="/generate-card" element={<GenerateCard />} />
         <Route path="/record-visit" element={<RecordVisit />} />
+        <Route path="/record-vitals" element={<RecordVitals />} />
+        <Route path="/my-triage-today" element={<MyTriageToday />} />
+        <Route path="/waiting-queue" element={<WaitingQueue />} />
         <Route path="/staff-list" element={<StaffList />} />
         <Route path="/audit-log" element={<AuditLog />} />
       </Routes>

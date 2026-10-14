@@ -1,25 +1,20 @@
-// backend/Server/controllers/authController.js
-//
-// Handles staff login, registration, and staff listing (admin only).
-// Matches Process 1.0 "Authenticate staff" from our DFD Level 1.
-
 const jwt = require('jsonwebtoken');
 const StaffUser = require('../models/StaffUser');
+const { sendStaffCredentials } = require('../services/emailService');
 
 async function register(req, res) {
   try {
-    const { staffId, fullName, role, password } = req.body;
+    const { staffId, fullName, role, password, email } = req.body;
 
-    // Basic validation
     if (!staffId || !fullName || !role || !password) {
-      return res.status(400).json({ message: 'All fields are required.' });
+      return res.status(400).json({ message: 'Staff ID, full name, role and password are required.' });
     }
 
     if (password.length < 8) {
       return res.status(400).json({ message: 'Password must be at least 8 characters.' });
     }
 
-    const allowedRoles = ['clinician', 'nurse', 'it_admin'];
+    const allowedRoles = ['records_clerk', 'nurse', 'clinician', 'dentist', 'it_admin'];
     if (!allowedRoles.includes(role)) {
       return res.status(400).json({ message: 'Invalid role selected.' });
     }
@@ -36,11 +31,37 @@ async function register(req, res) {
       password,
     });
 
+    // Send credentials by email (only if an email was provided)
+    let emailSent = false;
+    let emailError = null;
+
+    if (email && String(email).trim()) {
+      try {
+        await sendStaffCredentials({
+          toEmail: String(email).trim(),
+          fullName: staffUser.fullName,
+          staffId: staffUser.staffId,
+          password, // plain password, available only here before the response
+          role: staffUser.role,
+        });
+        emailSent = true;
+      } catch (err) {
+        console.error('Email send failed:', err.message);
+        emailError = err.message;
+      }
+    }
+
     return res.status(201).json({
-      message: 'Staff account created successfully.',
+      message: emailSent
+        ? 'Staff account created and credentials sent by email.'
+        : email
+          ? 'Staff account created, but email could not be sent.'
+          : 'Staff account created. No email was provided.',
       staffId: staffUser.staffId,
       fullName: staffUser.fullName,
       role: staffUser.role,
+      emailSent,
+      emailError,
     });
   } catch (error) {
     console.error('Registration error:', error);
@@ -91,4 +112,32 @@ async function getAllStaff(req, res) {
   }
 }
 
-module.exports = { register, login, getAllStaff };
+// Self-service password reset (no admin needed)
+async function resetPassword(req, res) {
+  try {
+    const { staffId, newPassword } = req.body;
+
+    if (!staffId || !newPassword) {
+      return res.status(400).json({ message: 'Staff ID and new password are required.' });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters.' });
+    }
+
+    const staffUser = await StaffUser.findOne({ staffId: String(staffId).trim() });
+    if (!staffUser) {
+      return res.status(404).json({ message: 'Staff ID not found.' });
+    }
+
+    staffUser.password = newPassword; // pre-save hook hashes it
+    await staffUser.save();
+
+    return res.status(200).json({ message: 'Password updated successfully. You can sign in now.' });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    return res.status(500).json({ message: 'Password reset failed.', error: error.message });
+  }
+}
+
+module.exports = { register, login, getAllStaff, resetPassword };

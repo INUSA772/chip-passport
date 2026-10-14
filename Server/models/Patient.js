@@ -1,10 +1,3 @@
-// backend/Server/models/Patient.js
-//
-// This model represents the PATIENT entity from our ERD.
-// Now includes baseline medical fields (allergies, chronic conditions,
-// current medications) so a card can be generated automatically after
-// each visit, instead of requiring manual re-entry every time.
-
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema(
@@ -33,8 +26,6 @@ const patientSchema = new mongoose.Schema(
       trim: true,
     },
 
-    // Baseline medical info — set at registration, updated as needed.
-    // These feed automatic card rewrites after each visit.
     allergies: {
       type: String,
       required: false,
@@ -54,6 +45,17 @@ const patientSchema = new mongoose.Schema(
       required: false,
       trim: true,
       default: '',
+    },
+
+    // Physical MIFARE / RFID card unique ID (from RC522).
+    // Optional until a card is linked. sparse allows many patients with no card.
+    rfidUid: {
+      type: String,
+      required: false,
+      unique: true,
+      sparse: true,
+      trim: true,
+      uppercase: true,
     },
   },
   {

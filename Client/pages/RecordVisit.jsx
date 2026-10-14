@@ -1,5 +1,3 @@
-// Client/pages/RecordVisit.jsx
-
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { API_BASE_URL } from '../services/api';

@@ -1,4 +1,3 @@
-
 const Visit = require('../models/Visit');
 const Patient = require('../models/Patient');
 const chipService = require('../services/chipService');

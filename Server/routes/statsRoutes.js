@@ -1,7 +1,3 @@
-// backend/Server/routes/statsRoutes.js
-//
-// Admin-only route for dashboard analytics.
-
 const express = require('express');
 const router = express.Router();
 

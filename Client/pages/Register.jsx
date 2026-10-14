@@ -8,7 +8,8 @@ function Register() {
   const [form, setForm] = useState({
     staffId: '',
     fullName: '',
-    role: 'clinician',
+    email: '',
+    role: 'records_clerk',
     password: '',
     confirmPassword: '',
   });
@@ -52,6 +53,10 @@ function Register() {
       setError('Staff ID and Full Name are required.');
       return;
     }
+    if (form.email.trim() && !/^\S+@\S+\.\S+$/.test(form.email.trim())) {
+      setError('Please enter a valid email address.');
+      return;
+    }
 
     setLoading(true);
 
@@ -67,6 +72,7 @@ function Register() {
         body: JSON.stringify({
           staffId: form.staffId.trim(),
           fullName: form.fullName.trim(),
+          email: form.email.trim(),
           role: form.role,
           password: form.password,
         }),
@@ -79,13 +85,28 @@ function Register() {
         return;
       }
 
-      setSuccess(
-        `Account created successfully for ${form.fullName} (${form.staffId}). They can now log in.`
-      );
+      // Show a message that matches what actually happened with the email
+      if (data.emailSent) {
+        setSuccess(
+          `Account created for ${form.fullName} (${form.staffId}). Credentials were sent to ${form.email.trim()}.`
+        );
+      } else if (form.email.trim()) {
+        setSuccess(
+          `Account created for ${form.fullName} (${form.staffId}), but the email could not be sent${
+            data.emailError ? `: ${data.emailError}` : '.'
+          } Please give the credentials to the staff member directly.`
+        );
+      } else {
+        setSuccess(
+          `Account created for ${form.fullName} (${form.staffId}). No email was provided, so give the credentials to the staff member directly.`
+        );
+      }
+
       setForm({
         staffId: '',
         fullName: '',
-        role: 'clinician',
+        email: '',
+        role: 'records_clerk',
         password: '',
         confirmPassword: '',
       });
@@ -130,7 +151,10 @@ function Register() {
       <div className="register-content">
         <div className="register-header">
           <h1>Register Staff Account</h1>
-          <p>Create a login account for a clinician, nurse, or another IT administrator.</p>
+          <p>
+            Create a login account for a records clerk, nurse, clinician, dentist, or another IT
+            administrator.
+          </p>
         </div>
 
         <div className="register-card">
@@ -163,18 +187,34 @@ function Register() {
               </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="role">Role</label>
-              <select id="role" name="role" value={form.role} onChange={handleChange}>
-                <option value="clinician">Clinician</option>
-                <option value="nurse">Nurse</option>
-                <option value="it_admin">IT Admin</option>
-              </select>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="email">Email (optional)</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="e.g. grace.banda@gmail.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="role">Role</label>
+                <select id="role" name="role" value={form.role} onChange={handleChange}>
+                  <option value="records_clerk">Records Clerk</option>
+                  <option value="nurse">Nurse</option>
+                  <option value="clinician">Clinician</option>
+                  <option value="dentist">Dentist</option>
+                  <option value="it_admin">IT Admin</option>
+                </select>
+              </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Temporary Password</label>
                 <input
                   id="password"
                   name="password"

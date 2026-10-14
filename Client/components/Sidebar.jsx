@@ -1,29 +1,34 @@
-// Client/components/Sidebar.jsx
-
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../styles/Sidebar.css';
 
-const clinicalNavItems = [
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/scan', label: 'Scan card' },
-  { to: '/register-patient', label: 'Register patient' },
-  { to: '/generate-card', label: 'Generate card' },
-  { to: '/record-visit', label: 'Record visit' },
-];
+const dashboardItem = { to: '/dashboard', label: 'Dashboard' };
+const scanItem = { to: '/scan', label: 'Scan card' };
+const registerPatientItem = { to: '/register-patient', label: 'Register patient' };
+const generateCardItem = { to: '/generate-card', label: 'Generate card' };
+const recordVisitItem = { to: '/record-visit', label: 'Record visit' };
+const recordVitalsItem = { to: '/record-vitals', label: 'Record vitals' };
+const myTriageItem = { to: '/my-triage-today', label: 'Patients I checked today' };
+const waitingQueueItem = { to: '/waiting-queue', label: 'Waiting queue' };
 
-const adminNavItems = [
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/register', label: 'Register staff' },
-  { to: '/staff-list', label: 'Staff accounts' },
-  { to: '/audit-log', label: 'Audit log' },
-];
+// Tabs for each role
+const navByRole = {
+  records_clerk: [dashboardItem, scanItem, registerPatientItem, generateCardItem],
+  nurse: [dashboardItem, scanItem, recordVitalsItem, myTriageItem],
+  clinician: [dashboardItem, waitingQueueItem, scanItem, recordVisitItem],
+  dentist: [dashboardItem, waitingQueueItem, scanItem, recordVisitItem],
+  it_admin: [
+    dashboardItem,
+    { to: '/register', label: 'Register staff' },
+    { to: '/staff-list', label: 'Staff accounts' },
+    { to: '/audit-log', label: 'Audit log' },
+  ],
+};
 
 function Sidebar() {
   const navigate = useNavigate();
   const role = localStorage.getItem('role') || '';
-  const isAdmin = role === 'it_admin';
-  const navItems = isAdmin ? adminNavItems : clinicalNavItems;
+  const navItems = navByRole[role] || [dashboardItem];
   const [menuOpen, setMenuOpen] = useState(false);
 
   function handleSignOut() {
@@ -32,7 +37,7 @@ function Sidebar() {
   }
 
   function handleNavClick() {
-    setMenuOpen(false); // close menu after choosing a link (mobile)
+    setMenuOpen(false); 
   }
 
   return (

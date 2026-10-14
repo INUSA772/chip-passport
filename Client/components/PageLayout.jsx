@@ -1,9 +1,3 @@
-// Client/components/PageLayout.jsx
-//
-// Shared shell for every page after login: sidebar + content area.
-// Also handles the "must be logged in" check in ONE place, instead
-// of every page repeating its own useEffect/navigate('/') guard.
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar.jsx';

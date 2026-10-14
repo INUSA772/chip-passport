@@ -1,9 +1,3 @@
-// backend/Server/app.js
-//
-// Sets up the Express app: middleware, routes, everything except
-// actually starting the server (that's server.js's job).
-// Keeping app.js and server.js separate makes testing easier later —
-// tests can import app.js without starting a real server.
 
 const express = require('express');
 const cors = require('cors');
@@ -11,32 +5,27 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const visitRoutes = require('./routes/visitRoutes');
+const vitalsRoutes = require('./routes/vitalsRoutes');
 const setupRoutes = require('./routes/setup');
 const hospitalRoutes = require('./routes/hospital');
 const statsRoutes = require('./routes/statsRoutes');
 
 const app = express();
 
-// Render sits behind a proxy. This makes the rate limiter on /api/setup
-// see each visitor's real IP instead of treating everyone as one person.
 app.set('trust proxy', 1);
 
-// Allows the frontend (running on a different port) to talk to this server.
 app.use(cors());
 
-// Lets Express understand JSON request bodies (req.body).
 app.use(express.json());
 
-// Every route file gets mounted under a clear base path,
-// matching the URLs used throughout our controllers.
 app.use('/api/auth', authRoutes);
 app.use('/api/patient', patientRoutes);
 app.use('/api/visit', visitRoutes);
+app.use('/api/vitals', vitalsRoutes);
 app.use('/api/setup', setupRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/stats', statsRoutes);
 
-// Simple route to confirm the server is alive — useful for quick testing.
 app.get('/', (req, res) => {
   res.send('Electronic Health Passport API is running.');
 });

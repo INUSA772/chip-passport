@@ -1,8 +1,3 @@
-// Server/routes/hospital.js
-//
-// Lets a logged-in IT admin view and update their hospital's
-// public contact details (shown on the login page).
-
 const express = require('express');
 const Hospital = require('../models/Hospital');
 const { protect, restrictTo } = require('../middleware/authMiddleware');

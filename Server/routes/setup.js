@@ -1,7 +1,3 @@
-// Server/routes/setup.js
-//
-// First-run setup + safe "Reset for Demo" endpoint
-
 const express = require('express');
 const crypto = require('crypto');
 const rateLimit = require('express-rate-limit');
@@ -132,13 +128,6 @@ router.post('/', limiter, async (req, res) => {
     res.status(500).json({ message: 'Setup failed' });
   }
 });
-
-// --------------------------------------------------
-// POST /api/setup/reset-demo
-// Only IT Admin can call this.
-// Clears all data so the Setup page appears again.
-// Perfect for presentation / demo.
-// --------------------------------------------------
 router.post('/reset-demo', protect, restrictTo('it_admin'), async (req, res) => {
   try {
     const { confirm } = req.body;

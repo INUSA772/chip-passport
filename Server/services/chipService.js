@@ -1,7 +1,7 @@
 
 const qrService = require('./qrService');
 
-const CHIP_MODE = 'qr'; // later could become 'nfc'
+const CHIP_MODE = 'qr'; // later could become 'nfc' or 'RFID'
 
 async function writeToChip(healthRecordData) {
   if (CHIP_MODE === 'qr') {
@@ -11,9 +11,6 @@ async function writeToChip(healthRecordData) {
   throw new Error(`Chip mode "${CHIP_MODE}" is not supported yet.`);
 }
 
-/**
- * Reads (decodes) a health record from "the chip" — currently a scanned QR code.
- */
 function readFromChip(scannedData) {
   if (CHIP_MODE === 'qr') {
     return qrService.decodeHealthRecord(scannedData);

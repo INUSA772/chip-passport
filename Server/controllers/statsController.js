@@ -1,10 +1,3 @@
-// backend/Server/controllers/statsController.js
-//
-// Admin-only: returns summary counts for the Dashboard analytics
-// cards — total patients, staff, visits, and visits recorded today.
-// Inspired by the Vitira Health system (Nigeria), which gave admins
-// data analytics on system activity rather than just raw records.
-
 const Patient = require('../models/Patient');
 const StaffUser = require('../models/StaffUser');
 const Visit = require('../models/Visit');
